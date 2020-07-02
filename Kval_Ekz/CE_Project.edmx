@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Pol" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id_manager" Type="int" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="INN" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="KPP" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id_manager" Type="int" />
+        </EntityType>
+        <Association Name="FK_FL_FL">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="FL" Type="Self.FL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FL">
+              <PropertyRef Name="Id_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UL_Managers">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="UL" Type="Self.UL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UL">
+              <PropertyRef Name="Id_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CEModelContainer">
+          <EntitySet Name="FL" EntityType="Self.FL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UL" EntityType="Self.UL" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FL_FL" Association="Self.FK_FL_FL">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="FL" EntitySet="FL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UL_Managers" Association="Self.FK_UL_Managers">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="UL" EntitySet="UL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_manager" Type="Int32" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK_FL_FL" FromRole="FL" ToRole="Managers" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FL" Relationship="Self.FK_FL_FL" FromRole="Managers" ToRole="FL" />
+          <NavigationProperty Name="UL" Relationship="Self.FK_UL_Managers" FromRole="Managers" ToRole="UL" />
+        </EntityType>
+        <EntityType Name="UL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KPP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_manager" Type="Int32" />
+          <NavigationProperty Name="Managers" Relationship="Self.FK_UL_Managers" FromRole="UL" ToRole="Managers" />
+        </EntityType>
+        <Association Name="FK_FL_FL">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="FL" Type="Self.FL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FL">
+              <PropertyRef Name="Id_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UL_Managers">
+          <End Role="Managers" Type="Self.Managers" Multiplicity="0..1" />
+          <End Role="UL" Type="Self.UL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Managers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UL">
+              <PropertyRef Name="Id_manager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FL" EntityType="Self.FL" />
+          <EntitySet Name="Managers" EntityType="Self.Managers" />
+          <EntitySet Name="UL" EntityType="Self.UL" />
+          <AssociationSet Name="FK_FL_FL" Association="Self.FK_FL_FL">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="FL" EntitySet="FL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UL_Managers" Association="Self.FK_UL_Managers">
+            <End Role="Managers" EntitySet="Managers" />
+            <End Role="UL" EntitySet="UL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CEModelContainer" CdmEntityContainer="CEEntities">
+          <EntitySetMapping Name="FL">
+            <EntityTypeMapping TypeName="CEModel.FL">
+              <MappingFragment StoreEntitySet="FL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Pol" ColumnName="Pol" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Id_manager" ColumnName="Id_manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="CEModel.Managers">
+              <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UL">
+            <EntityTypeMapping TypeName="CEModel.UL">
+              <MappingFragment StoreEntitySet="UL">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="KPP" ColumnName="KPP" />
+                <ScalarProperty Name="Id_manager" ColumnName="Id_manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

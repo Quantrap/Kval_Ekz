@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kval_Ekz", "Kval_Ekz\Kval_Ekz.csproj", "{CD978243-D8B0-4CD5-9278-4BA0D13FE799}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD978243-D8B0-4CD5-9278-4BA0D13FE799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD978243-D8B0-4CD5-9278-4BA0D13FE799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD978243-D8B0-4CD5-9278-4BA0D13FE799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD978243-D8B0-4CD5-9278-4BA0D13FE799}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBA49052-E60D-4C52-873B-B073174BAEDF}
+	EndGlobalSection
+EndGlobal
